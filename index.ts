@@ -14,6 +14,16 @@ app.get('/quotes', (req, res) => {
     res.send(quotes)
 })
 
+app.get('/quotes/:id', (req, res) => {
+    const id = Number(req.params.id)
+    const match = quotes.find((quote) => quote.id === id)
+    if (match) {
+        res.send(match)
+    } else {
+        res.status(404).send({ error: 'We did not found the quote' })
+    }
+})
+
 app.listen(PORT, () => {
     console.log(`Server is ready and running on: http://localhost:${PORT}/quotes`)
 })
