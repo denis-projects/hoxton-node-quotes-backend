@@ -7,7 +7,7 @@ const app = express()
 const PORT = 1234
 
 app.use(cors({
-    origin: 'http://localhost:1234'
+    origin: 'http://localhost:3000'
 }))
 
 app.get('/quotes', (req, res) => {
