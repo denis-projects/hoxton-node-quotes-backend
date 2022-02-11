@@ -6,9 +6,7 @@ const app = express()
 
 const PORT = 1234
 
-app.use(cors({
-    origin: 'http://localhost:3000'
-}))
+app.use(cors())
 
 app.get('/quotes', (req, res) => {
     res.send(quotes)
