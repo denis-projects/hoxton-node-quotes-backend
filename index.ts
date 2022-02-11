@@ -10,8 +10,8 @@ app.use(cors())
 
 app.get('/', (req, res) => {
     res.send(`
-    <h1 style="color: red;">Welcome to our quotes API!</h1>
-    <p>Here are some endpoints you can use:</p>
+    <h1>Welcome to our quotes API!</h1>
+    <p>Here are endpoints:</p>
     <ul>
       <li><a href="/quotes">/quotes</a></li>
       <li><a href="/randomQuote">/randomQuote</a></li>
