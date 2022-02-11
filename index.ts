@@ -6,7 +6,7 @@ const app = express()
 
 const PORT = 1234
 
-app.use(cors())
+app.use(cors({ origin: "::1" }))
 
 app.get('/quotes', (req, res) => {
     res.send(quotes)
