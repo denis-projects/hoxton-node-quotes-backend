@@ -8,19 +8,27 @@ const PORT = 1234
 
 app.use(cors())
 
+app.get('/', (req, res) => {
+    res.send(`
+    <h1 style="color: red;">Welcome to our quotes API!</h1>
+    <p>Here are some endpoints you can use:</p>
+    <ul>
+      <li><a href="/quotes">/quotes</a></li>
+      <li><a href="/randomQuote">/randomQuote</a></li>
+    </ul>
+   `)
+})
+
 app.get('/quotes', (req, res) => {
     res.send(quotes)
 })
 
-app.get('/quotes/:id', (req, res) => {
-    const id = Number(req.params.id)
-    const match = quotes.find((quote) => quote.id === id)
-    if (match) {
-        res.send(match)
-    } else {
-        res.status(404).send({ error: 'We did not found the quote' })
-    }
+app.get('/randomQuote', (req, res) => {
+    const randomIndex = Math.floor(Math.random() * quotes.length)
+    const quote = quotes[randomIndex]
+    res.send(quote)
 })
+
 
 app.listen(PORT, () => {
     console.log(`Server is ready and running on: http://localhost:${PORT}/quotes`)
