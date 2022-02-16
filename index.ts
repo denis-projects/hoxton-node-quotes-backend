@@ -110,6 +110,9 @@ app.post('/quotes', (req, res) => {
     }
 });
 
+
+// Update the qutote
+
 app.patch('/quotes/:id', (req, res) => {
     const id = Number(req.params.id);
 
@@ -131,6 +134,9 @@ app.patch('/quotes/:id', (req, res) => {
         res.status(404).send({ error: 'Philosopy not found.' });
     }
 });
+
+
+// Delete a quote
 
 app.delete('/quotes/:id', (req, res) => {
 
