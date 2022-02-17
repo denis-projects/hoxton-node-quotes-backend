@@ -90,10 +90,12 @@ router.get('/randomQuote', (req, res) => {
 
 // Get a quote by ID
 
-router.get(':id', (req, res) => {
+router.get('/:id', (req, res) => {
     const id = Number(req.params.id);
     const match = quotes.find((quote) => quote.id === id);
+
     if (match) {
+
         res.send(match);
     } else {
         res.status(404).send({ error: 'Quote not found.' });
