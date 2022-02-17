@@ -131,8 +131,10 @@ router.post('/', (req, res) => {
     if (typeof lastName !== 'string') {
         errors.push('Check the typeof lastName')
     }
-
     if (typeof image !== 'string') {
+        errors.push('Check the typeof image')
+    }
+    if (typeof age !== 'number') {
         errors.push('Check the typeof image')
     }
 
@@ -175,6 +177,7 @@ router.patch('/:id', (req, res) => {
         if (typeof req.body.image === 'string') quotesToChange.image = req.body.image;
         if (typeof req.body.firstName === 'string') quotesToChange.firstName = req.body.firstName;
         if (typeof req.body.lastName === 'string') quotesToChange.lastName = req.body.lastNames;
+        if (typeof req.body.age === 'number') quotesToChange.age = req.body.age;
 
         res.send(quotesToChange);
     } else {
