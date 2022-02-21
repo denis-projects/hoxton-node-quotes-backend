@@ -76,7 +76,7 @@ let quotes: Quotes[] = [
 ]
 
 
-const dropTable = db.prepare('DROP TABLE IF EXIST quotes;');
+const dropTable = db.prepare('DROP TABLE IF EXISTS quotes;');
 dropTable.run();
 
 const createQuotesTable = db.prepare(`
@@ -97,7 +97,7 @@ createQuotesTable.run()
 
 
 const createQuote = db.prepare(`
-INSERT INTO quotes (philosopy, philosopher, firstName, lastName, age, image ) VALUES  (?, ?, ?, ?, ?, ?, ?);
+INSERT INTO quotes (philosopy, philosopher, firstName, lastName, age, image ) VALUES  (?, ?, ?, ?, ?, ?);
 `);
 
 for (const quote of quotes) {
