@@ -110,8 +110,9 @@ app.post('/quotes', (req, res) => {
 
     if (errors.length === 0) {
         const create = createQuote.run(philosopher, philosopy, firstName, lastName, age, image)
+        const quote = getQuotesById.get(create.lastInsertRowid)
 
-        res.status(201).send(create);
+        res.status(201).send(quote);
     } else {
         res.status(400).send({ errors: errors });
     }
@@ -126,16 +127,18 @@ app.patch('/:id', (req, res) => {
     // happy path: every key given exists and is the right type // ✅
     // sad path: wrong keys or wrong types provided by user // ❌
 
-    const quotesToChange = quotes.find((quote) => quote.id === id);
+    const philosopy = req.body.philosopy;
+    const philosopher = req.body.philosopher;
+    const age = req.body.age;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const image = req.body.image;
 
-    if (quotesToChange) {
+    const match = getQuotesById.get(id)
 
-        if (typeof req.body.philosopher === 'string') quotesToChange.philosopher = req.body.philosopher;
-        if (typeof req.body.philosopy === 'string') quotesToChange.philosopy = req.body.philosopy;
-        if (typeof req.body.image === 'string') quotesToChange.image = req.body.image;
-        if (typeof req.body.firstName === 'string') quotesToChange.firstName = req.body.firstName;
-        if (typeof req.body.lastName === 'string') quotesToChange.lastName = req.body.lastNames;
-        if (typeof req.body.age === 'number') quotesToChange.age = req.body.age;
+    if (match) {
+        updateQuote.run(philosopher, philosopy, firstName, lastName, age, image)
+        const quotesToChange = getQuotesById.get(id)
 
         res.send(quotesToChange);
     } else {
